@@ -48,18 +48,18 @@ class ALU(size: Int) extends Module {
       res:= Cat(acc(3,0),acc(7,4))
     }
     is(Types.clrc){
-      resc:= 0.U(1)
+      resc:= 0.U
     }
     is(Types.setc){
-      resc:= 1.U(1)
+      resc:= 1.U
     }
 
   }
-  /*when (res =/= 0.S){
-    resz:=0.S
+  when (res =/= 0.U){
+    resz:=0.U
   } .otherwise{
-    resz:=1.S
-  }*/
+    resz:=1.U
+  }
   io.y := res
   io.oc := resc
   io.z := resz

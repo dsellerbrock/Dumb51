@@ -67,4 +67,28 @@ class ALUSpec extends AnyFlatSpec with ChiselScalatestTester {
       println("Last out value :" + dut.io.y.peek().litValue)
     }
   }
+  it should "Set and Clear C Bit" in {
+    test(new ALU(8)) { dut =>
+      dut.io.op.poke(Types.clrc)
+      dut.clock.step()
+      dut.io.oc.expect(0.U)
+      println("Last output value :" + dut.io.oc.peek().litValue)
+
+      dut.io.op.poke(Types.setc)
+      dut.clock.step()
+      dut.io.oc.expect(1.U)
+      println("Last output value :" + dut.io.oc.peek().litValue)
+
+      dut.io.op.poke(Types.clrc)
+      dut.clock.step()
+      dut.io.oc.expect(0.U)
+      println("Last output value :" + dut.io.oc.peek().litValue)
+
+      dut.io.op.poke(Types.setc)
+      dut.clock.step()
+      dut.io.oc.expect(1.U)
+      println("Last output value :" + dut.io.oc.peek().litValue)
+
+    }
+  }
 }
